@@ -1,0 +1,27 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Transaction {
+  id        Int               @id @default(autoincrement())
+  total     Int
+  payment   String           // CASH | QRIS
+  createdAt DateTime         @default(now())
+  items     TransactionItem[]
+}
+
+model TransactionItem {
+  id            Int         @id @default(autoincrement())
+  transactionId Int
+  name          String      // "Tahu Crispy", "Otak-Otak Crispy", "Sosis Crispy"
+  price         Int         // harga jual per pcs
+  qty           Int         // jumlah pcs
+  subtotal      Int         // price * qty
+
+  transaction Transaction @relation(fields: [transactionId], references: [id], onDelete: Cascade)
+}

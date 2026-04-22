@@ -1,0 +1,14 @@
+-- CreateTable
+CREATE TABLE "Product" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "name" TEXT NOT NULL,
+    "price" INTEGER NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "Transaction" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "total" INTEGER NOT NULL,
+    "payment" TEXT NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
